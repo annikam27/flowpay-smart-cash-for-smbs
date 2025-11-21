@@ -33,6 +33,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Plus, Search, MoreVertical, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { NewPaymentModal } from '@/components/NewPaymentModal';
 
 type PaymentStatus = 'Scheduled' | 'Processing' | 'Completed' | 'Failed' | 'Cancelled';
 type PaymentMethod = 'ACH' | 'Wire' | 'International' | 'Check';
@@ -87,6 +88,7 @@ const Payments = () => {
   const [methodFilter, setMethodFilter] = useState<string>('All');
   const [selectedPayments, setSelectedPayments] = useState<Set<string>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
+  const [isNewPaymentOpen, setIsNewPaymentOpen] = useState(false);
   const itemsPerPage = 20;
 
   const filteredPayments = useMemo(() => {
@@ -161,7 +163,7 @@ const Payments = () => {
               {payments.length} payments this month • ${totalAmount.toLocaleString()} processed
             </p>
           </div>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={() => setIsNewPaymentOpen(true)}>
             <Plus className="h-4 w-4" />
             New Payment
           </Button>
@@ -437,6 +439,8 @@ const Payments = () => {
           </Card>
         )}
       </div>
+
+      <NewPaymentModal open={isNewPaymentOpen} onOpenChange={setIsNewPaymentOpen} />
     </DashboardLayout>
   );
 };
