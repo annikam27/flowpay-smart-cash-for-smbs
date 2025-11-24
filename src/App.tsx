@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Payments from "./pages/Payments";
+import Vendors from "./pages/Vendors";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Payments />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/vendors"
+              element={
+                <ProtectedRoute>
+                  <Vendors />
                 </ProtectedRoute>
               }
             />
