@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
+import { AddVendorModal } from '@/components/AddVendorModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -227,6 +228,7 @@ const Vendors = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [selectedVendor, setSelectedVendor] = useState<typeof mockVendors[0] | null>(null);
+  const [isAddVendorOpen, setIsAddVendorOpen] = useState(false);
 
   const filteredVendors = mockVendors.filter((vendor) =>
     vendor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -296,7 +298,7 @@ const Vendors = () => {
               <Upload className="h-4 w-4 mr-2" />
               Import from CSV
             </Button>
-            <Button>
+            <Button onClick={() => setIsAddVendorOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
               Add Vendor
             </Button>
@@ -686,6 +688,15 @@ const Vendors = () => {
           )}
         </SheetContent>
       </Sheet>
+
+      {/* Add Vendor Modal */}
+      <AddVendorModal
+        open={isAddVendorOpen}
+        onOpenChange={setIsAddVendorOpen}
+        onSuccess={() => {
+          // Refresh vendor list here when backend is integrated
+        }}
+      />
     </DashboardLayout>
   );
 };
