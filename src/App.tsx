@@ -11,6 +11,7 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Payments from "./pages/Payments";
 import Vendors from "./pages/Vendors";
+import CashFlow from "./pages/CashFlow";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Vendors />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cash-flow"
+              element={
+                <ProtectedRoute>
+                  <CashFlow />
                 </ProtectedRoute>
               }
             />
