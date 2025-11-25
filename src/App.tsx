@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Payments from "./pages/Payments";
 import Vendors from "./pages/Vendors";
 import CashFlow from "./pages/CashFlow";
+import Integrations from "./pages/Integrations";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -56,6 +57,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <CashFlow />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/integrations"
+              element={
+                <ProtectedRoute>
+                  <Integrations />
                 </ProtectedRoute>
               }
             />
