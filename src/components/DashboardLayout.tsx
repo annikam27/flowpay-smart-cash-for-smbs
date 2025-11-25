@@ -14,6 +14,8 @@ import {
   Bell,
   LogOut,
   ChevronDown,
+  Zap,
+  Grid3x3,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -38,6 +40,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     { name: 'Payments', href: '/payments', icon: CreditCard },
     { name: 'Vendors', href: '/vendors', icon: Users },
     { name: 'Cash Flow', href: '/cash-flow', icon: TrendingUp },
+    { name: 'FlowCredit', href: '/flowcredit', icon: Zap },
+    { name: 'Integrations', href: '/integrations', icon: Grid3x3 },
     { name: 'Reports', href: '/reports', icon: FileText },
     { name: 'Settings', href: '/settings', icon: Settings },
   ];
