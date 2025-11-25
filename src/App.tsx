@@ -13,6 +13,7 @@ import Payments from "./pages/Payments";
 import Vendors from "./pages/Vendors";
 import CashFlow from "./pages/CashFlow";
 import Integrations from "./pages/Integrations";
+import FlowCredit from "./pages/FlowCredit";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -65,6 +66,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Integrations />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/flowcredit"
+              element={
+                <ProtectedRoute>
+                  <FlowCredit />
                 </ProtectedRoute>
               }
             />
