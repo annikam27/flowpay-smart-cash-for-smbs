@@ -1,9 +1,12 @@
 import { useAuth } from '@/contexts/AuthContext';
+import { useOnboarding } from '@/contexts/OnboardingContext';
 import DashboardLayout from '@/components/DashboardLayout';
+import { OnboardingFlow } from '@/components/onboarding/OnboardingFlow';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useToast } from '@/hooks/use-toast';
 import {
   Table,
   TableBody,
@@ -17,6 +20,24 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const { shouldShowOnboarding, setOnboardingComplete, setShouldShowOnboarding } = useOnboarding();
+  const { toast } = useToast();
+
+  const handleOnboardingComplete = (data: any) => {
+    setOnboardingComplete(true);
+    toast({
+      title: "Welcome to FlowPay!",
+      description: "Your account is ready to use.",
+    });
+  };
+
+  const handleOnboardingSkip = () => {
+    setShouldShowOnboarding(false);
+  };
+
+  if (shouldShowOnboarding) {
+    return <OnboardingFlow onComplete={handleOnboardingComplete} onSkip={handleOnboardingSkip} />;
+  }
 
   // Mock data
   const topMetrics = [
