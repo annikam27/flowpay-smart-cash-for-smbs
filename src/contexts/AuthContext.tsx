@@ -23,9 +23,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('flowpay_user');
+    const storedUser =
+      localStorage.getItem('flowpay_user') ||
+      sessionStorage.getItem('flowpay_user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch {
+        localStorage.removeItem('flowpay_user');
+        sessionStorage.removeItem('flowpay_user');
+      }
     }
   }, []);
 
